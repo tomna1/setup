@@ -1,6 +1,6 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
-set -euf -o pipefail
+set -euo pipefail
 
 setup_fzf() {
   assert_command_not_installed "fzf" "fzf"
