@@ -1,0 +1,21 @@
+name: Test install script
+
+on:
+  - push: ["main"]
+  - pull: {}
+
+jobs:
+  run-script:
+    runs-on: ${{ matrix.arch }}
+    strategy:
+      matrix:
+        arch: ["ubuntu-latest"]
+        
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Run install script
+        run: ./setup/install_all.sh
+      
+
