@@ -19,5 +19,10 @@ jobs:
 
       - name: Run install script
         run: ${{ github.workspace }}/install_all.sh
-      
+
+      - name: Ensure fzf installed
+        run: which fzf
+
+      - name: Ensure helix installed
+        run: which hx
 
