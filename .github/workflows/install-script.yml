@@ -2,7 +2,7 @@ name: Test install script
 
 on:
   - push: ["main"]
-  - pull: {}
+  - pull: []
 
 jobs:
   run-script:
