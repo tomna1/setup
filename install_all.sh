@@ -89,7 +89,7 @@ install_all() {
   script_dir="$( cd -- $( dirname -- "${BASH_SOURCE[0]}") &> /dev/null && pwd )"
 
   setup_fzf
-  setup_zoxide
+  # setup_zoxide
 
   local helix_config_dir="${script_dir}/config/helix"
   setup_helix ${helix_config_dir}
