@@ -22,15 +22,11 @@ jobs:
           ${{ github.workspace }}/install_all.sh
           echo "${HOME}/.local/bin:${PATH}" >> "${GITHUB_PATH}"
 
-      - name: check bruh
-        run: cat ~/.bashrc
-
-      - name: check bruh2
-        run: echo $PATH
-
       - name: Ensure fzf installed
         run: |
           source ~/.bashrc
+          cat ~/.bashrc
+          echo $PATH
           which fzf
 
       - name: Ensure helix installed
