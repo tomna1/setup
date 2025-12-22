@@ -20,6 +20,9 @@ jobs:
       - name: Run install script
         run: ${{ github.workspace }}/install_all.sh
 
+      - name: check bruh
+        run: ls ~/.bashrc
+
       - name: Ensure fzf installed
         run: which fzf
 
