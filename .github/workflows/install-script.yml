@@ -21,7 +21,7 @@ jobs:
         run: ${{ github.workspace }}/install_all.sh
 
       - name: check bruh
-        run: ls ~/.bashrc
+        run: cat ~/.bashrc
 
       - name: Ensure fzf installed
         run: which fzf
