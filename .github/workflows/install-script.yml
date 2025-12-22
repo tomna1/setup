@@ -25,6 +25,9 @@ jobs:
       - name: check bruh
         run: cat ~/.bashrc
 
+      - name: check bruh2
+        run: echo $PATH
+
       - name: Ensure fzf installed
         run: which fzf
 
