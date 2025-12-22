@@ -41,6 +41,7 @@ setup_helix() {
   tar -xf "${tmpdir}/helix.tar.xz" -C "${tmpdir}/helix" --strip-components=1
 
   mkdir -p "${HOME}/.local/helix-${latest_release_tag}"
+  mkdir -p "${HOME}/.local/bin"
   mv "${tmpdir}/helix/hx" "${HOME}/.local/helix-${latest_release_tag}/hx"
   mv "${tmpdir}/helix/runtime" "${HOME}/.local/helix-${latest_release_tag}/runtime"
   mv "${tmpdir}/helix/contrib" "${HOME}/.local/helix-${latest_release_tag}/contrib"
