@@ -48,6 +48,7 @@ setup_helix() {
   ln -s "${HOME}/.local/helix-${latest_release_tag}/hx" "${HOME}/.local/bin/hx"
   rm -r "${tmpdir}"
 
+  mkdir -p "${HOME}/.config/helix"
   cp "${helix_config_dir}/config.toml" "${HOME}/.config/helix/config.toml"
 }
 
