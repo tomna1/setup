@@ -1,8 +1,10 @@
 name: Test install script
 
 on:
-  - push: ["main"]
-  - pull: []
+  push:
+    branches: ["main"]
+  pull:
+    branches: []
 
 jobs:
   run-script:
