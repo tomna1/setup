@@ -27,7 +27,7 @@ assert_command_not_installed() {
   local cmd="${1}"
   local command_name="${2}"
 
-  if command -v "${cmd}" >/dev/null 2>&1; then
+  if type -P "${cmd}" >/dev/null 2>&1; then
     err '1' "${command_name} is already installed."
   fi
 }
