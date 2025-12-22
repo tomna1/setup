@@ -95,6 +95,8 @@ install_all() {
 
   local helix_config_dir="${script_dir}/config/helix"
   setup_helix ${helix_config_dir}
+
+  echo 'export PATH="${HOME}/.local/bin:$PATH"' >> "${HOME}/.bashrc"
   
   echo 'Run the command 'source ~/.bashrc''
 }
