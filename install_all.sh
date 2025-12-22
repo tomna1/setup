@@ -3,7 +3,7 @@
 set -euf -o pipefail
 
 setup_fzf() {
-  assert_command_already_installed "fzf" "fzf"
+  assert_command_not_installed "fzf" "fzf"
 
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
@@ -16,14 +16,14 @@ setup_fzf() {
 # }
 
 setup_zoxide() {
-  assert_command_already_installed "zoxide" "zoxide"
+  assert_command_not_installed "zoxide" "zoxide"
 
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
   echo 'eval "$(zoxide init bash --cmd cd)"' >> ~/.bashrc
   echo 'alias cd="z"' >> ~/.bashrc
 }
 
-assert_command_already_installed() {
+assert_command_not_installed() {
   local cmd="${1}"
   local command_name="${2}"
 
