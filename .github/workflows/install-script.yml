@@ -29,7 +29,9 @@ jobs:
         run: echo $PATH
 
       - name: Ensure fzf installed
-        run: which fzf
+        run: |
+          source ~/.bashrc
+          which fzf
 
       - name: Ensure helix installed
         run: which hx
