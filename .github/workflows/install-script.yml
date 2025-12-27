@@ -19,15 +19,12 @@ jobs:
 
       - name: Run install script
         run: |
-          ${{ github.workspace }}/install_all.sh --no-zoxide
+          ${{ github.workspace }}/install_all.sh --no-zoxide # TODO: make zoxide install correctly on github machines
           echo "${HOME}/.local/bin:${PATH}" >> "${GITHUB_PATH}"
           echo "${HOME}/.fzf/bin:${PATH}" >> "${GITHUB_PATH}"
 
       - name: Ensure fzf installed
         run: |
-          source ~/.bashrc
-          cat ~/.bashrc
-          echo $PATH
           which fzf
 
       - name: Ensure helix installed
