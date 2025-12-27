@@ -19,6 +19,7 @@ setup_fzf() {
 
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
+  echo 'eval "$(fzf --bash)"' >> ~/.bashrc
 }
 
 setup_helix() {
@@ -41,12 +42,14 @@ setup_helix() {
   tar -xf "${tmpdir}/helix.tar.xz" -C "${tmpdir}/helix" --strip-components=1
 
   mkdir -p "${HOME}/.local/helix-${latest_release_tag}"
+  mkdir -p "${HOME}/.local/bin"
   mv "${tmpdir}/helix/hx" "${HOME}/.local/helix-${latest_release_tag}/hx"
   mv "${tmpdir}/helix/runtime" "${HOME}/.local/helix-${latest_release_tag}/runtime"
   mv "${tmpdir}/helix/contrib" "${HOME}/.local/helix-${latest_release_tag}/contrib"
   ln -s "${HOME}/.local/helix-${latest_release_tag}/hx" "${HOME}/.local/bin/hx"
   rm -r "${tmpdir}"
 
+  mkdir -p "${HOME}/.config/helix"
   cp "${helix_config_dir}/config.toml" "${HOME}/.config/helix/config.toml"
 }
 
@@ -57,7 +60,7 @@ setup_zoxide() {
   fi
 
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-  echo 'eval "$(zoxide init bash --cmd cd)"' >> ~/.bashrc
+  echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
   echo 'alias cd="z"' >> ~/.bashrc
 }
 
@@ -85,15 +88,33 @@ log() {
 }
 
 install_all() {
+  local no_zoxide='false'
+
+  while [[ $# -gt 0 ]]; do
+    case "${1}" in
+      --no-zoxide|-noz)
+        no_zoxide=true
+        shift
+        ;;
+      *)
+        echo "Unknown option: $1"
+        exit 1
+        ;;
+    esac
+  done
+
   local script_dir
   script_dir="$( cd -- $( dirname -- "${BASH_SOURCE[0]}") &> /dev/null && pwd )"
 
   setup_fzf
-  setup_zoxide
+
+  if [[ "${no_zoxide}" == 'false' ]]; then
+    setup_zoxide
+  fi
 
   local helix_config_dir="${script_dir}/config/helix"
   setup_helix ${helix_config_dir}
-  
+
   echo 'Run the command 'source ~/.bashrc''
 }
 

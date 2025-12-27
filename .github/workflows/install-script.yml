@@ -1,0 +1,31 @@
+name: Test install script
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: []
+
+jobs:
+  run-script:
+    runs-on: ${{ matrix.arch }}
+    strategy:
+      fail-fast: true
+      matrix:
+        arch: ["ubuntu-latest"]
+        
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Run install script
+        run: |
+          ${{ github.workspace }}/install_all.sh --no-zoxide # TODO: make zoxide install correctly on github machines
+          echo "${HOME}/.local/bin:${PATH}" >> "${GITHUB_PATH}"
+          echo "${HOME}/.fzf/bin:${PATH}" >> "${GITHUB_PATH}"
+
+      - name: Ensure everthing installed correctly
+        run: |
+          which fzf
+          which hx
+
