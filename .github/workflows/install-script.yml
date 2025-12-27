@@ -10,7 +10,7 @@ jobs:
   run-script:
     runs-on: ${{ matrix.arch }}
     strategy:
-      fail-false: true
+      fail-fast: true
       matrix:
         arch: ["ubuntu-latest"]
         
