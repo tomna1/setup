@@ -23,12 +23,12 @@ setup_fzf() {
 }
 
 setup_helix() {
+  local helix_config_dir="${1}"
+
   if is_installed "hx"; then
     echo "hx is already installed, skipping..."
     return 0
   fi
-
-  local helix_config_dir="${1}"
 
   install_jq
 
@@ -97,7 +97,7 @@ install_all() {
         shift
         ;;
       *)
-        echo "Unknown option: $1"
+        echo "Unknown option: ${1}"
         exit 1
         ;;
     esac
