@@ -60,7 +60,7 @@ setup_zoxide() {
   fi
 
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-  echo 'eval "$(zoxide init bash --cmd cd)"' >> ~/.bashrc
+  echo 'eval "$(zoxide init bash)"' >> ~/.bashrc
   echo 'alias cd="z"' >> ~/.bashrc
 }
 
