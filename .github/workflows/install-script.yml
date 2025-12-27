@@ -19,7 +19,7 @@ jobs:
 
       - name: Run install script
         run: |
-          ${{ github.workspace }}/install_all.sh
+          ${{ github.workspace }}/install_all.sh --no-zoxide
           echo "${HOME}/.local/bin:${PATH}" >> "${GITHUB_PATH}"
           echo "${HOME}/.fzf/bin:${PATH}" >> "${GITHUB_PATH}"
 

@@ -88,11 +88,29 @@ log() {
 }
 
 install_all() {
+  local no_zoxide='false'
+
+  while [[ $# -gt 0 ]]; do
+    case "${1}" in
+      --no-zoxide|-noz)
+        no_zoxide=true
+        shift
+        ;;
+      *)
+        echo "Unknown option: $1"
+        exit 1
+        ;;
+    esac
+  done
+
   local script_dir
   script_dir="$( cd -- $( dirname -- "${BASH_SOURCE[0]}") &> /dev/null && pwd )"
 
   setup_fzf
-  # setup_zoxide
+
+  if [[ "${no_zoxide}" == 'false' ]]; then
+    setup_zoxide
+  fi
 
   local helix_config_dir="${script_dir}/config/helix"
   setup_helix ${helix_config_dir}
