@@ -20,6 +20,7 @@ setup_fzf() {
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
   echo 'eval "$(fzf --bash)"' >> ~/.bashrc
+  echo 'export PATH="${HOME}/.fzf/bin:${PATH}"'
 }
 
 setup_helix() {
