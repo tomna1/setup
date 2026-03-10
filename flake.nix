@@ -1,19 +1,25 @@
 {
-  description = "My dev shell";
+  description = "Global CLI environment";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
 
   outputs = { self, nixpkgs }:
   let
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    system = "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; };
   in {
-    devShells.default = pkgs.mkShell {
-      packages = with pkgs; [
+    packages.${system}.default = pkgs.buildEnv {
+      name = "cli-env";
+      paths = with pkgs; [
         helix
         git
+        neovim
         ripgrep
-        zoxide
-       	fzf
+        fd
+        nodejs
+        python311
       ];
     };
   };
