@@ -1,25 +1,22 @@
 {
-  description = "Global CLI environment";
+  description = "My environment";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs }:
+  outputs = { nixpkgs, home-manager, ... }:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
   in {
-    packages.${system}.default = pkgs.buildEnv {
-      name = "cli-env";
-      paths = with pkgs; [
-        helix
-        git
-        neovim
-        ripgrep
-        fd
-        nodejs
-        python311
+    homeConfigurations.thomas = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+
+      modules = [
+        ./home.nix
       ];
     };
   };
